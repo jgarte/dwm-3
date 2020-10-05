@@ -1,0 +1,71 @@
+diff --git a/config.def.h b/config.def.h
+index 1c0b587..ae7af3b 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -26,9 +26,9 @@ static const Rule rules[] = {
+ 	 *	WM_CLASS(STRING) = instance, class
+ 	 *	WM_NAME(STRING) = title
+ 	 */
+-	/* class      instance    title       tags mask     isfloating   monitor */
+-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
++	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
++	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
++	{ "Firefox",  NULL,       NULL,       1 << 8,       0,             0,           -1 },
+ };
+ 
+ /* layout(s) */
+diff --git a/dwm.c b/dwm.c
+index 4465af1..33b753f 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -92,7 +92,7 @@ struct Client {
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
+ 	int bw, oldbw;
+ 	unsigned int tags;
+-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
++	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+ 	Client *next;
+ 	Client *snext;
+ 	Monitor *mon;
+@@ -137,6 +137,7 @@ typedef struct {
+ 	const char *instance;
+ 	const char *title;
+ 	unsigned int tags;
++	int iscentered;
+ 	int isfloating;
+ 	int monitor;
+ } Rule;
+@@ -297,6 +298,7 @@ applyrules(Client *c)
+ 		&& (!r->class || strstr(class, r->class))
+ 		&& (!r->instance || strstr(instance, r->instance)))
+ 		{
++			c->iscentered = r->iscentered;
+ 			c->isfloating = r->isfloating;
+ 			c->tags |= r->tags;
+ 			for (m = mons; m && m->num != r->monitor; m = m->next);
+@@ -1017,6 +1019,7 @@ killclient(const Arg *arg)
+ void
+ manage(Window w, XWindowAttributes *wa)
+ {
++    Monitor *m;
+ 	Client *c, *t = NULL;
+ 	Window trans = None;
+ 	XWindowChanges wc;
+@@ -1060,8 +1063,15 @@ manage(Window w, XWindowAttributes *wa)
+ 	grabbuttons(c, 0);
+ 	if (!c->isfloating)
+ 		c->isfloating = c->oldstate = trans != None || c->isfixed;
+-	if (c->isfloating)
++	if (c->isfloating){
+ 		XRaiseWindow(dpy, c->win);
++        if(c->iscentered) {
++            c->x = (c->mon->mw - WIDTH(c)) / 2;
++            c->y = (c->mon->mh - HEIGHT(c)) / 2;
++            for (m=mons; m != c->mon; m = m->next)
++                c->x += m->mw;
++        }
++    }
+ 	attach(c);
+ 	attachstack(c);
+ 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
