@@ -1,0 +1,8 @@
+# Patch files
+*.orig
+*.rej
+
+# C files
+*.o
+dwm
+config.h
