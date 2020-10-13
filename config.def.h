@@ -4,7 +4,7 @@
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 8;       /* gap pixel between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=12" };
@@ -38,9 +38,11 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  iscentered  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",    NULL,     NULL,           0,         0,          1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          0,          -1,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          0,          1,          -1,        -1 },
-	{ "dropdown",NULL,     NULL,           0,         1,          1,          0,          1,          -1},
+	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          0,           0,        -1 },
+	{ NULL,      NULL,     "Picture-in-Picture",1,    0,          0,          0,           0,        -1 },
+	{ "St",      NULL,     NULL,           0,         0,          0,          1,           0,        -1 },
+	{ "dropdown",NULL,     NULL,           0,         1,          1,          0,           0,        -1 },
+	{ "youtube", NULL,     NULL,           0,         1,          1,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          1,          0,           1,        -1 }, /* xev */
 };
 
