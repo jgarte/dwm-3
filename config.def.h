@@ -45,6 +45,7 @@ static const Rule rules[] = {
 	{ "dropdown",NULL,     NULL,           0,         1,          1,          0,           0,        -1 },
 	{ "youtube", NULL,     NULL,           0,         1,          1,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          1,          0,           1,        -1 }, /* xev */
+	{ "R_x11",   NULL,     NULL,           0,         0,          1,          0,           1,        -1 }, /* R popup */
 };
 
 /* include functions  */
@@ -84,7 +85,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_white, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+/* static const char *termcmd[]  = { "st", NULL }; */
 
 #include "movestack.c"
 static Key keys[] = {
@@ -175,6 +176,7 @@ static Signal signals[] = {
 	{ "fullscreen",     fullscreen },
 	{ "movestack",      movestack },
 	{ "tagmon",         tagmon },
+	{ "swapmon",        swapmon },
 	{ "zoom",           zoom },
 	{ "view",           view },
 	{ "viewall",        viewall },
