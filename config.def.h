@@ -46,6 +46,8 @@ static const Rule rules[] = {
 	{ "youtube", NULL,     NULL,           0,         1,          1,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          1,          0,           1,        -1 }, /* xev */
 	{ "R_x11",   NULL,     NULL,           0,         0,          1,          0,           1,        -1 }, /* R popup */
+	{ "Matplotlib",NULL,   NULL,           0,         1,          1,          0,           1,        -1 }, /* Python popups */
+	{ "Dropbox-cli",NULL,  NULL,           0,         0,          1,          0,           1,        -1 },
 	{ NULL,      NULL,     "Kite",         0,         0,          0,          0,           1,        -1 },
 	{ "Arandr",  NULL,     NULL,           0,         1,          1,          0,           0,        -1 },
 };
