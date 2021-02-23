@@ -26,9 +26,6 @@ static const char col_sel_border[]  = "#1A282F";
 #define baralpha 0xd0
 #define borderalpha OPAQUE
 
-/* static const unsigned int baralpha = 0xd0; */
-/* static const unsigned int borderalpha = OPAQUE; */
-
 static const char *colors[][3]      = {
 	/*               fg           bg           border   */
 	[SchemeNorm] = { col_norm_fg, col_norm_bg, col_norm_border },
