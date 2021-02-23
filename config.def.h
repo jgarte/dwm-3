@@ -22,8 +22,13 @@ static const char col_sel_border[]  = "#1A282F";
 /* static const char col_white[]       = "#f2f1f0"; */
 /* static const char col_gray4[]       = "#aaccbb"; */
 /* static const char col_cyan[]        = "#42717b"; */
-static const unsigned int baralpha = 0xd0;
-static const unsigned int borderalpha = OPAQUE;
+
+#define baralpha 0xd0
+#define borderalpha OPAQUE
+
+/* static const unsigned int baralpha = 0xd0; */
+/* static const unsigned int borderalpha = OPAQUE; */
+
 static const char *colors[][3]      = {
 	/*               fg           bg           border   */
 	[SchemeNorm] = { col_norm_fg, col_norm_bg, col_norm_border },
@@ -64,6 +69,8 @@ static const Rule rules[] = {
 	{ "Dropbox-cli",NULL,  NULL,           0,         0,          1,          0,           1,        -1,     1 },
 	{ NULL,      NULL,     "Kite",         0,         0,          0,          0,           1,        -1,     1 },
 	{ "Arandr",  NULL,     NULL,           0,         1,          1,          0,           0,        -1,     1 },
+	{ "Surf",    NULL,     NULL,           0,         1,          0,          0,           1,        -1,     1 },
+	{ "Zathura", NULL,     NULL,           0,         0,          0,          0,           1,        -1,     1 },
 };
 
 /* include functions  */
